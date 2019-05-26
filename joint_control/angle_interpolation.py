@@ -54,16 +54,17 @@ class AngleInterpolationAgent(PIDAgent):
         #get current time relative to first execution
       	currenttime = perception.time - self.starttime
 
+      	#uncomment the following if the angle interpolation should loop (useful for visualizing)
       	#reset time after 1 excution 
-        max = 0
-        for x in range(0, len(times)):
-        	for y in range(0, len(times[x])):
-        		if(times[x][y] > max):
-        			max = times[x][y]
+        #max = 0
+        #for x in range(0, len(times)):
+        #	for y in range(0, len(times[x])):
+        #		if(times[x][y] > max):
+        #			max = times[x][y]
 
-        if(currenttime > max):
-        	self.starttime = perception.time
-        	currenttime = perception.time - self.starttime
+        #if(currenttime > max):
+        #	self.starttime = perception.time
+        #	currenttime = perception.time - self.starttime
 
         interpolation = 0
 
