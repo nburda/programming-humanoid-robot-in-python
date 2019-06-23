@@ -24,12 +24,30 @@ class InverseKinematicsAgent(ForwardKinematicsAgent):
         '''
         joint_angles = []
         # YOUR CODE HERE
+        #list of joints of effectors
+        chains = {'Head': ['HeadYaw', 'HeadPitch'], 
+                  'LArm': ['LShoulderPitch', 'LShoulderRoll', 'LElbowYaw', 'LElbowRoll', 'LWristYaw'], 
+                  'LLeg': ['LHipYawPitch', 'LHipRoll', 'LHipPitch', 'LKneePitch', 'LAnklePitch', 'LAnkleRoll'], 
+                  'RLeg': ['RHipYawPitch', 'RHipRoll', 'RHipPitch', 'RKneePitch', 'RAnklePitch', 'RAnkleRoll'], 
+                  'RArm': ['RShoulderPitch', 'RShoulderRoll', 'RElbowYaw', 'RElbowRoll', 'RWristYaw']
+                 }
+        #get X_e, Y_e, Theta_e
+        #create empty Matrix
+        jac = [[1 for x in range(chains[effector_name].size())] for y in range(3)] 
+        #calculate new joint angle for each joint in current effector
+        for x in chains[effector_name]:
+            #get x,y value from angle?
+            #create jacobian matrix
+        #inverse jacobian matrix
+        #use numpy.linalg.solve for inverse jacobian matrix * [X_e, Y_e, Theta_e]
         return joint_angles
 
     def set_transforms(self, effector_name, transform):
         '''solve the inverse kinematics and control joints use the results
         '''
         # YOUR CODE HERE
+        joint_angles = inverse_kinematics(self, effector_name, transform)
+        
         self.keyframes = ([], [], [])  # the result joint angles have to fill in
 
 if __name__ == '__main__':
