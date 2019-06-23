@@ -12,6 +12,7 @@
 
 from forward_kinematics import ForwardKinematicsAgent
 from numpy.matlib import identity
+import numpy as np
 
 
 class InverseKinematicsAgent(ForwardKinematicsAgent):
@@ -33,11 +34,11 @@ class InverseKinematicsAgent(ForwardKinematicsAgent):
                  }
         #get X_e, Y_e, Theta_e
         #create empty Matrix
-        jac = [[1 for x in range(chains[effector_name].size())] for y in range(3)] 
         #calculate new joint angle for each joint in current effector
         for x in chains[effector_name]:
             #get x,y value from angle?
             #create jacobian matrix
+            print
         #inverse jacobian matrix
         #use numpy.linalg.solve for inverse jacobian matrix * [X_e, Y_e, Theta_e]
         return joint_angles
@@ -46,7 +47,7 @@ class InverseKinematicsAgent(ForwardKinematicsAgent):
         '''solve the inverse kinematics and control joints use the results
         '''
         # YOUR CODE HERE
-        joint_angles = inverse_kinematics(self, effector_name, transform)
+        joint_angles = self.inverse_kinematics(effector_name, transform)
         
         self.keyframes = ([], [], [])  # the result joint angles have to fill in
 
